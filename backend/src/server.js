@@ -15,7 +15,6 @@ const app = express();
 app.use(cors({
   origin: [
     frontendUrl,
-    'http://localhost:3000',
     'https://shortify-sigma-livid.vercel.app'
   ],
   credentials: true,
