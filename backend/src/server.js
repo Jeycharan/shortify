@@ -11,14 +11,31 @@ const redirectRoutes = require('./routes/redirectRoutes');
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: [
-    frontendUrl,
-    'https://shortify-sigma-livid.vercel.app'
-  ],
-  credentials: true,
-}));
+// Middleware - CORS
+const rawFrontend = process.env.FRONTEND_URL || frontendUrl || '';
+const normalized = rawFrontend.replace(/\|\|/g, ',');
+const allowedOrigins = normalized
+  .split(/[,;\s]+/)
+  .map((s) => s.trim())
+  .filter(Boolean);
+// Always allow localhost dev origin
+if (!allowedOrigins.includes('http://localhost:3000')) {
+  allowedOrigins.push('http://localhost:3000');
+}
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow non-browser requests like curl/postman (no origin)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS policy: origin not allowed'), false);
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
