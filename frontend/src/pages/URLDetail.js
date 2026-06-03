@@ -16,6 +16,7 @@ import {
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import { QRCodeSVG } from 'qrcode.react';
+import { BACKEND_ORIGIN } from '../config/urls';
 
 // Register Chart.js components
 ChartJS.register(
@@ -101,7 +102,7 @@ export function URLDetail() {
   };
 
   const copyToClipboard = () => {
-    const shortUrl = `http://localhost:5000/${url?.customAlias || url?.shortCode}`;
+    const shortUrl = `${BACKEND_ORIGIN}/${url?.customAlias || url?.shortCode}`;
     navigator.clipboard.writeText(shortUrl);
     alert('Short URL copied to clipboard!');
   };
@@ -174,7 +175,7 @@ export function URLDetail() {
                 <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
-                localhost:5000/{url.customAlias || url.shortCode}
+                {BACKEND_ORIGIN}/{url.customAlias || url.shortCode}
               </div>
             </div>
             <div>
@@ -276,7 +277,7 @@ export function URLDetail() {
 
              <div className="bg-white dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm p-6 flex flex-col items-center justify-center">
                  <div className="bg-white p-2 rounded-lg mb-4">
-                   <QRCodeSVG value={`http://localhost:5000/${url.customAlias || url.shortCode}`} size={140} />
+                   <QRCodeSVG value={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`} size={140} />
                  </div>
                  <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Scan to visit URL</p>
              </div>

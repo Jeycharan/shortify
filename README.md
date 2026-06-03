@@ -65,7 +65,7 @@ FRONTEND_URL=http://localhost:3000
 npm run dev
 ```
 
-The backend API will be available at `http://localhost:5000`
+The backend API will be available at `https://shortify-pe39.onrender.com`
 
 ### Frontend Setup
 

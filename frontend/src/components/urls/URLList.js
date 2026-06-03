@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { BACKEND_ORIGIN } from '../../config/urls';
 
 export function URLList({ urls, onURLDeleted }) {
   const handleDelete = async (id, e) => {
@@ -48,12 +49,12 @@ export function URLList({ urls, onURLDeleted }) {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex flex-col">
                     <a
-                      href={`http://localhost:5000/${url.customAlias || url.shortCode}`}
+                      href={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline"
                     >
-                      localhost:5000/{url.customAlias || url.shortCode}
+                      {BACKEND_ORIGIN}/{url.customAlias || url.shortCode}
                     </a>
                   </div>
                 </td>
@@ -82,7 +83,7 @@ export function URLList({ urls, onURLDeleted }) {
                       </svg>
                     </Link>
                     <button
-                      onClick={(e) => copyToClipboard(`http://localhost:5000/${url.customAlias || url.shortCode}`, e)}
+                      onClick={(e) => copyToClipboard(`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`, e)}
                       className="text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
                       title="Copy URL"
                     >

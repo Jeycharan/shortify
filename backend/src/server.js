@@ -13,7 +13,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: frontendUrl,
+  origin: [
+    frontendUrl,
+    'http://localhost:3000',
+    'https://shortify-sigma-livid.vercel.app'
+  ],
   credentials: true,
 }));
 app.use(express.json());

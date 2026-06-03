@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import { BACKEND_ORIGIN } from '../config/urls';
 
 export function Home() {
   const { isAuthenticated } = useAuth();
@@ -100,12 +101,12 @@ export function Home() {
             </h3>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href={`http://localhost:5000/${shortUrl.customAlias || shortUrl.shortCode}`}
+                href={`${BACKEND_ORIGIN}/${shortUrl.customAlias || shortUrl.shortCode}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-indigo-600 dark:text-indigo-400 font-medium break-all hover:underline text-lg"
               >
-                http://localhost:5000/{shortUrl.customAlias || shortUrl.shortCode}
+                {BACKEND_ORIGIN}/{shortUrl.customAlias || shortUrl.shortCode}
               </a>
               <Link
                 to="/dashboard"
