@@ -17,6 +17,7 @@ import {
 import { Bar, Line } from 'react-chartjs-2';
 import { QRCodeSVG } from 'qrcode.react';
 import { BACKEND_ORIGIN } from '../config/urls';
+import { ConfirmModal } from '../components/ui/ConfirmModal';
 
 // Register Chart.js components
 ChartJS.register(
@@ -47,6 +48,7 @@ export function URLDetail() {
     description: '',
   });
   const [editSaving, setEditSaving] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     fetchData(true);
@@ -81,14 +83,18 @@ export function URLDetail() {
     }
   };
 
-  const handleDelete = async () => {
-    if (!window.confirm('Are you sure you want to delete this URL?')) return;
+  const handleDeleteClick = () => {
+    setShowDeleteModal(true);
+  };
 
+  const handleDeleteConfirm = async () => {
     try {
       await api.delete(`/urls/${id}`);
       navigate('/dashboard');
     } catch (err) {
       setError('Failed to delete URL. Please try again.');
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
@@ -317,7 +323,7 @@ export function URLDetail() {
               Edit
             </button>
             <button
-              onClick={handleDelete}
+              onClick={handleDeleteClick}
               className='px-3.5 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-md text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-200 dark:hover:border-red-800/30 flex items-center transition-colors shadow-sm'
             >
               <svg
@@ -510,6 +516,14 @@ export function URLDetail() {
           </div>
         </div>
       </div>
+
+      <ConfirmModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDeleteConfirm}
+        title="Delete Short URL"
+        message="Are you sure you want to delete this short URL? This action cannot be undone and the link will stop working immediately."
+      />
     </div>
   );
 }

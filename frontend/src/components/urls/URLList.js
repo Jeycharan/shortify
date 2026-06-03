@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BACKEND_ORIGIN } from '../../config/urls';
+import { ConfirmModal } from '../ui/ConfirmModal';
 
 export function URLList({ urls, onURLDeleted }) {
-  const handleDelete = async (id, e) => {
+  const [deleteId, setDeleteId] = useState(null);
+
+  const handleDeleteClick = (id, e) => {
     e.preventDefault();
-    if (window.confirm('Are you sure you want to delete this URL?')) {
-      onURLDeleted(id);
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      onURLDeleted(deleteId);
+      setDeleteId(null);
     }
   };
 
@@ -148,7 +156,7 @@ export function URLList({ urls, onURLDeleted }) {
                       </svg>
                     </button>
                     <button
-                      onClick={(e) => handleDelete(url._id, e)}
+                      onClick={(e) => handleDeleteClick(url._id, e)}
                       className='text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors'
                       title='Delete'
                     >
@@ -173,6 +181,14 @@ export function URLList({ urls, onURLDeleted }) {
           </tbody>
         </table>
       </div>
+
+      <ConfirmModal
+        isOpen={!!deleteId}
+        onClose={() => setDeleteId(null)}
+        onConfirm={confirmDelete}
+        title="Delete Short URL"
+        message="Are you sure you want to delete this short URL? This action cannot be undone and the link will stop working immediately."
+      />
     </div>
   );
 }
