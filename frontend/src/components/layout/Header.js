@@ -48,7 +48,7 @@ export function Header() {
               </svg>
             </Link>
           </div>
-          <div className='flex items-center space-x-4'>
+          <div className='flex items-center space-x-2 sm:space-x-4'>
             <button
               onClick={toggleTheme}
               title={
@@ -95,8 +95,8 @@ export function Header() {
                 >
                   Dashboard
                 </Link>
-                <div className='flex items-center space-x-3'>
-                  <span className='text-sm text-slate-500 dark:text-slate-400'>
+                <div className='flex items-center space-x-1 sm:space-x-3'>
+                  <span className='hidden sm:inline-block text-sm text-slate-500 dark:text-slate-400'>
                     {user?.username || user?.email}
                   </span>
                   <button
@@ -121,7 +121,7 @@ export function Header() {
                 </Link>
                 <Link
                   to='/register'
-                  className='px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors shadow-sm'
+                  className='px-3 sm:px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-colors shadow-sm whitespace-nowrap'
                 >
                   Sign Up
                 </Link>
