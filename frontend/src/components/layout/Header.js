@@ -30,10 +30,21 @@ export function Header() {
             <Link
               to='/'
               className={`ml-1 p-2 rounded-md transition-colors text-slate-600 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800`}
-              aria-label="Home"
+              aria-label='Home'
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              <svg
+                className='w-5 h-5'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
+                />
               </svg>
             </Link>
           </div>
@@ -149,7 +160,12 @@ export function Footer() {
               aria-label='Facebook'
               className='text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 transition-colors'
             >
-              <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+              <svg
+                className='w-5 h-5'
+                fill='currentColor'
+                viewBox='0 0 24 24'
+                aria-hidden='true'
+              >
                 <path d='M22 12.07C22 6.51 17.52 2 12 2S2 6.51 2 12.07c0 4.99 3.66 9.12 8.44 9.93v-7.04H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.9h-2.3v7.04C18.34 21.19 22 17.06 22 12.07z' />
               </svg>
             </a>
@@ -161,7 +177,12 @@ export function Footer() {
               aria-label='YouTube'
               className='text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition-colors'
             >
-              <svg className='w-5 h-5' viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+              <svg
+                className='w-5 h-5'
+                viewBox='0 0 24 24'
+                fill='currentColor'
+                aria-hidden='true'
+              >
                 <path d='M23.5 6.2s-.2-1.6-.8-2.3c-.8-.9-1.7-.9-2.1-1-2.9-.2-7.3-.2-7.3-.2h-.1s-4.4 0-7.3.2c-.4.1-1.3.1-2.1 1C.7 4.6.5 6.2.5 6.2S.2 8 .2 9.9v1.9c0 1.9.3 3.7.3 3.7s.2 1.6.8 2.3c.8.9 1.9.9 2.4 1 1.7.1 7.3.2 7.3.2s4.4 0 7.3-.2c.4-.1 1.3-.1 2.1-1 .6-.7.8-2.3.8-2.3s.3-1.8.3-3.7V9.9c0-1.9-.3-3.7-.3-3.7zM9.99 15.6V8.4l6.07 3.6-6.07 3.6z' />
               </svg>
             </a>

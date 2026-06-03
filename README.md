@@ -5,6 +5,7 @@ A full-stack URL shortener application with analytics tracking. Built with React
 ## Features
 
 ### Mandatory Features
+
 - **Authentication**: User signup and login with JWT tokens
 - **URL Shortening**: Generate short URLs with unique codes
 - **User Dashboard**: View and manage all created short URLs
@@ -12,6 +13,7 @@ A full-stack URL shortener application with analytics tracking. Built with React
 - **Responsive UI**: Clean dashboard layout with proper loading states
 
 ### Bonus Features
+
 - Custom alias for short URLs
 - QR code generation for each short URL
 - Expiry date for links
@@ -20,37 +22,42 @@ A full-stack URL shortener application with analytics tracking. Built with React
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React 18, Vite, Tailwind CSS, React Router, Chart.js |
-| Backend | Node.js, Express, JWT, bcrypt |
-| Database | MongoDB, Mongoose |
-| Validation | express-validator |
+| Layer      | Technology                                           |
+| ---------- | ---------------------------------------------------- |
+| Frontend   | React 18, Vite, Tailwind CSS, React Router, Chart.js |
+| Backend    | Node.js, Express, JWT, bcrypt                        |
+| Database   | MongoDB, Mongoose                                    |
+| Validation | express-validator                                    |
 
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - MongoDB (local or MongoDB Atlas)
 
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
 ```bash
 cd backend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create a `.env` file from the example:
+
 ```bash
 cp .env.example .env
 ```
 
 4. Configure the environment variables in `.env`:
+
 ```
 PORT=5000
 NODE_ENV=development
@@ -61,6 +68,7 @@ FRONTEND_URL=http://localhost:3000
 ```
 
 5. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -70,16 +78,19 @@ The backend API will be available at `https://shortify-pe39.onrender.com`
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
 ```bash
 cd frontend
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -130,12 +141,14 @@ The frontend will be available at `http://localhost:3000`
 ## API Documentation
 
 ### Authentication
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - Login user
 - `POST /api/auth/logout` - Logout (protected)
 - `GET /api/auth/me` - Get current user (protected)
 
 ### URL Management
+
 - `POST /api/urls` - Create short URL (protected)
 - `GET /api/urls` - Get user's URLs (protected)
 - `GET /api/urls/:id` - Get URL details (protected)
@@ -143,11 +156,13 @@ The frontend will be available at `http://localhost:3000`
 - `DELETE /api/urls/:id` - Delete URL (protected)
 
 ### Analytics
+
 - `GET /api/analytics/:urlId` - Get analytics (protected)
 - `GET /api/analytics/:urlId/visits` - Get visit history (protected)
 - `GET /api/analytics/:urlId/stats` - Get aggregated stats (protected)
 
 ### Public
+
 - `GET /:shortCode` - Redirect to original URL
 
 ## Project Structure

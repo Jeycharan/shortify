@@ -34,7 +34,7 @@ app.use(
       return callback(new Error('CORS policy: origin not allowed'), false);
     },
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
 app.use(cookieParser());
