@@ -50,19 +50,19 @@ export function URLList({ urls, onURLDeleted }) {
         <table className='w-full table-fixed divide-y divide-slate-200 dark:divide-slate-700'>
           <thead className='bg-slate-50 dark:bg-slate-800/50'>
             <tr>
-              <th className='w-[35%] px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
+              <th className='w-[35%] px-2 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
                 Short URL
               </th>
-              <th className='w-[30%] px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
+              <th className='hidden md:table-cell w-[30%] px-2 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
                 Original URL
               </th>
-              <th className='w-[15%] px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
+              <th className='hidden sm:table-cell w-[15%] px-2 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
                 Created
               </th>
-              <th className='w-[8%] px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
+              <th className='w-[8%] px-2 sm:px-6 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
                 Clicks
               </th>
-              <th className='w-[12%] px-4 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
+              <th className='w-[12%] px-2 sm:px-6 py-3 text-right text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider'>
                 Actions
               </th>
             </tr>
@@ -73,7 +73,7 @@ export function URLList({ urls, onURLDeleted }) {
                 key={url._id}
                 className='hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors'
               >
-                <td className='px-4 sm:px-6 py-4'>
+                <td className='px-2 sm:px-6 py-4'>
                   <div className='flex flex-col w-full'>
                     <a
                       href={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`}
@@ -86,7 +86,7 @@ export function URLList({ urls, onURLDeleted }) {
                     </a>
                   </div>
                 </td>
-                <td className='px-4 sm:px-6 py-4'>
+                <td className='hidden md:table-cell px-2 sm:px-6 py-4'>
                   <div
                     className='text-sm text-slate-900 dark:text-slate-300 block truncate w-full'
                     title={url.originalUrl}
@@ -94,15 +94,15 @@ export function URLList({ urls, onURLDeleted }) {
                     {url.originalUrl}
                   </div>
                 </td>
-                <td className='px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400'>
+                <td className='hidden sm:table-cell px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400'>
                   {new Date(url.createdAt).toLocaleDateString()}
                 </td>
-                <td className='px-4 sm:px-6 py-4 whitespace-nowrap text-sm'>
+                <td className='px-2 sm:px-6 py-4 whitespace-nowrap text-sm'>
                   <span className='px-2.5 py-0.5 inline-flex text-xs font-medium rounded-md bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300'>
                     {url.analytics?.clickCount || 0}
                   </span>
                 </td>
-                <td className='px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
+                <td className='px-2 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
                   <div className='flex items-center justify-end space-x-3'>
                     <Link
                       to={`/urls/${url._id}`}
