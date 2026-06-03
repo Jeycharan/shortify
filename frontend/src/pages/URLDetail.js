@@ -179,8 +179,8 @@ export function URLDetail() {
       <div className='space-y-6'>
         {/* URL Info Card */}
         <div className='bg-white dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm p-6 w-full flex flex-col lg:flex-row lg:items-center justify-between gap-6'>
-          <div className='grid grid-cols-1 md:grid-cols-6 gap-6 w-full'>
-            <div>
+          <div className='grid grid-cols-1 md:grid-cols-12 gap-6 w-full min-w-0'>
+            <div className='md:col-span-2 min-w-0'>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Title
               </p>
@@ -188,7 +188,7 @@ export function URLDetail() {
                 {url.title || url.customAlias || 'Untitled'}
               </p>
             </div>
-            <div className='md:col-span-2'>
+            <div className='md:col-span-3 min-w-0'>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Destination
               </p>
@@ -211,11 +211,11 @@ export function URLDetail() {
                 </span>
               </div>
             </div>
-            <div>
+            <div className='md:col-span-3 min-w-0'>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Short URL
               </p>
-              <div className='flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400'>
+              <div className='flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 min-w-0'>
                 <svg
                   className='w-4 h-4 mr-2 flex-shrink-0'
                   fill='none'
@@ -229,10 +229,12 @@ export function URLDetail() {
                     d='M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
                   />
                 </svg>
-                {BACKEND_ORIGIN}/{url.customAlias || url.shortCode}
+                <span className='truncate' title={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`}>
+                  {BACKEND_ORIGIN}/{url.customAlias || url.shortCode}
+                </span>
               </div>
             </div>
-            <div>
+            <div className='md:col-span-2 min-w-0'>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Created
               </p>
@@ -253,7 +255,7 @@ export function URLDetail() {
                 {new Date(url.createdAt).toLocaleDateString()}
               </div>
             </div>
-            <div>
+            <div className='md:col-span-2 min-w-0'>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Expires
               </p>
