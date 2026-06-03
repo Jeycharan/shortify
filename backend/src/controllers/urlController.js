@@ -274,8 +274,8 @@ async function redirectURL(req, res) {
       await analytics.addVisit(visitData);
     }
 
-    // Redirect to original URL
-    res.redirect(301, url.originalUrl);
+    // Redirect to original URL (Use 302 Temporary Redirect so browsers don't cache it, allowing us to track all clicks)
+    res.redirect(302, url.originalUrl);
   } catch (error) {
     console.error('Redirect error:', error);
     res.status(500).json({ message: 'Server error' });
