@@ -179,7 +179,7 @@ export function URLDetail() {
       <div className='space-y-6'>
         {/* URL Info Card */}
         <div className='bg-white dark:bg-slate-800 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm p-6 w-full flex flex-col lg:flex-row lg:items-center justify-between gap-6'>
-          <div className='grid grid-cols-1 md:grid-cols-5 gap-6 w-full'>
+          <div className='grid grid-cols-1 md:grid-cols-6 gap-6 w-full'>
             <div>
               <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
                 Title
@@ -251,6 +251,27 @@ export function URLDetail() {
                   />
                 </svg>
                 {new Date(url.createdAt).toLocaleDateString()}
+              </div>
+            </div>
+            <div>
+              <p className='text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1'>
+                Expires
+              </p>
+              <div className='flex items-center text-sm font-medium text-slate-900 dark:text-white'>
+                <svg
+                  className='w-4 h-4 mr-2 text-slate-400 dark:text-slate-500 flex-shrink-0'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={1.5}
+                    d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                  />
+                </svg>
+                {url.expiresAt ? new Date(url.expiresAt).toLocaleDateString() : 'Never'}
               </div>
             </div>
           </div>
