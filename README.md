@@ -212,14 +212,18 @@ Shortify/
 9. Password hashing with bcrypt (12 rounds)
 10. Frontend and backend run on different ports during development
 
-## AI Planning Document
+## AI Tools & Usage
 
-This application was planned and built using Claude Code (Claude 4.7) with the following approach:
+In compliance with hackathon guidelines, this project leveraged AI tools to assist in planning, development, and debugging:
 
-1. **Initial Analysis**: Explored the requirements and identified the core features needed
-2. **Architecture Design**: Designed a clean separation of concerns with models, controllers, routes, and middleware
-3. **Implementation**: Built the backend first (Express API), then the frontend (React)
-4. **Testing**: Verified the application flow end-to-end
+1. **Claude Code (Claude 4.7)**: Used for initial project analysis, architecture design, and building the foundational backend (Express API) and frontend (React).
+2. **Google DeepMind Antigravity (Gemini)**: Used as a pair-programming agent to refine the UI/UX into a modern minimalist design, implement complex frontend features (like password toggles and theme configurations), and debug complex React state issues.
+
+**Development Approach**:
+- **Initial Analysis**: Explored the requirements and identified the core features needed.
+- **Architecture Design**: Designed a clean separation of concerns with models, controllers, routes, and middleware.
+- **Implementation**: Built the backend first, then the frontend, followed by iterative UI polishing.
+- **Testing**: Verified the application flow end-to-end and debugged runtime issues collaboratively with AI.
 
 ## Architecture Diagram
 
