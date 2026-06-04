@@ -279,8 +279,24 @@ async function redirectURL(req, res) {
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
 
-    // Redirect to original URL (Use 302 Temporary Redirect so browsers don't cache it, allowing us to track all clicks)
-    res.redirect(302, url.originalUrl);
+    // Send an HTML response that redirects via JavaScript and meta refresh.
+    // This completely bypasses aggressive browser/CDN caching of HTTP redirects (301/302),
+    // guaranteeing the server tracks every single click.
+    res.status(200).send(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta http-equiv="refresh" content="0;url=${url.originalUrl}">
+          <title>Redirecting...</title>
+          <script>
+            window.location.replace("${url.originalUrl}");
+          </script>
+        </head>
+        <body>
+          <p>Redirecting...</p>
+        </body>
+      </html>
+    `);
   } catch (error) {
     console.error('Redirect error:', error);
     res.status(500).json({ message: 'Server error' });
