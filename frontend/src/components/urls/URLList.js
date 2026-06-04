@@ -84,7 +84,7 @@ export function URLList({ urls, onURLDeleted }) {
                 <td className='px-2 sm:px-6 py-4'>
                   <div className='flex flex-col w-full'>
                     <a
-                      href={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}`}
+                      href={`${BACKEND_ORIGIN}/${url.customAlias || url.shortCode}?_t=${Date.now()}`}
                       target='_blank'
                       rel='noopener noreferrer'
                       className='text-indigo-600 dark:text-indigo-400 font-mono text-sm hover:underline block truncate w-full'

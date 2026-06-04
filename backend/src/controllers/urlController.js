@@ -88,6 +88,11 @@ async function getUserURLs(req, res) {
 
     const total = await URL.countDocuments({ userId });
 
+    // Prevent browser from caching the API response
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
     res.json({
       message: 'URLs retrieved successfully',
       urls: urls.map((url) => url.toSafeObject()),
