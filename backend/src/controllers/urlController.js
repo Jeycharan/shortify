@@ -274,6 +274,11 @@ async function redirectURL(req, res) {
       await analytics.addVisit(visitData);
     }
 
+    // Set headers to prevent browser caching of the redirect
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
     // Redirect to original URL (Use 302 Temporary Redirect so browsers don't cache it, allowing us to track all clicks)
     res.redirect(302, url.originalUrl);
   } catch (error) {

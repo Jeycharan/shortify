@@ -55,6 +55,11 @@ const analyticsSchema = new mongoose.Schema(
       type: [visitSchema],
       default: [],
     },
+    dailyClicks: {
+      type: Map,
+      of: Number,
+      default: {},
+    },
   },
   {
     timestamps: true,
@@ -66,19 +71,25 @@ analyticsSchema.index({ 'visits.timestamp': -1 });
 
 // Method to add a visit
 analyticsSchema.methods.addVisit = function (visitData) {
-  // Add new visit to beginning of array
-  this.visits.unshift(visitData);
-
-  // Limit visits array to max stored
-  if (this.visits.length > 100) {
-    this.visits = this.visits.slice(0, 100);
-  }
-
-  // Update click count and last visit
-  this.clickCount += 1;
-  this.lastVisit = new Date();
-
-  return this.save();
+  const dateKey = new Date().toISOString().split('T')[0];
+  
+  return this.constructor.updateOne(
+    { _id: this._id },
+    {
+      $inc: { 
+        clickCount: 1,
+        [`dailyClicks.${dateKey}`]: 1
+      },
+      $set: { lastVisit: new Date() },
+      $push: {
+        visits: {
+          $each: [visitData],
+          $position: 0,
+          $slice: 100
+        }
+      }
+    }
+  );
 };
 
 // Method to get daily click counts for chart
@@ -90,15 +101,19 @@ analyticsSchema.methods.getDailyClicks = function (days = 7) {
     const date = new Date(now);
     date.setDate(date.getDate() - i);
     const dateKey = date.toISOString().split('T')[0];
-    dailyCounts[dateKey] = 0;
-  }
-
-  this.visits.forEach((visit) => {
-    const visitDate = visit.timestamp.toISOString().split('T')[0];
-    if (dailyCounts.hasOwnProperty(visitDate)) {
-      dailyCounts[visitDate]++;
+    
+    if (this.dailyClicks && this.dailyClicks.has(dateKey)) {
+      dailyCounts[dateKey] = this.dailyClicks.get(dateKey);
+    } else {
+      dailyCounts[dateKey] = 0;
+      this.visits.forEach((visit) => {
+        const visitDate = visit.timestamp.toISOString().split('T')[0];
+        if (visitDate === dateKey) {
+          dailyCounts[dateKey]++;
+        }
+      });
     }
-  });
+  }
 
   return Object.entries(dailyCounts).map(([date, count]) => ({ date, count }));
 };
