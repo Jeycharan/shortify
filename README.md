@@ -266,7 +266,7 @@ In compliance with hackathon guidelines, this project leveraged AI tools to assi
 
 ## Video Demonstration
 
-A video demonstrating the application is available at:\n
+A video demonstrating the application is available at:
 video 1: https://www.loom.com/share/91a173933a65414dbd5e0c6de24104e8
 video 2: https://www.loom.com/share/efc26088d3994233ab41b033b85feda0
 
