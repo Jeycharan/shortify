@@ -204,8 +204,8 @@ Shortify/
 1. MongoDB is used as the database (easier for analytics document structure)
 2. JWT tokens stored in localStorage with Authorization header
 3. 6-character short codes using base62 (a-zA-Z0-9)
-4. Analytics stores last 100 visits per URL to prevent unbounded growth
-5. 301 redirect for SEO-friendly permanent redirects
+4. Analytics stores the last 100 detailed visits (IP, device) per URL to prevent unbounded document growth, while separately tracking exact total and daily click counts via MongoDB atomic operations.
+5. Instead of HTTP redirects (301/302), short links serve a 200 OK HTML payload with a JS/meta-refresh redirect to completely defeat aggressive browser/CDN heuristic caching and ensure 100% accurate click tracking.
 6. Tailwind CSS for styling (rapid development, good looking UI)
 7. Vite for frontend build tool (faster than CRA)
 8. Rate limiting on auth endpoints to prevent abuse
